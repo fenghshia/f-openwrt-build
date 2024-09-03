@@ -44,3 +44,9 @@ jobs:
         token: ${{ secrets.TELTOKEN }}
         to: ${{ secrets.TELCHATID }}
         message: Prepare environment complete.
+
+    - name: Set stream log
+      uses: fenghshia/f-openwrt-build@online-log
+      with:
+        token: ${{ secrets.TELTOKEN }}
+        chatid: ${{ secrets.TELCHATID }}
