@@ -53,13 +53,13 @@ jobs:
 
     - name: Build openwrt
       id: build
-      continue-on-error: true
+      # continue-on-error: true
       run: |
         cd openwrt
         make -j$(nproc) V=s >> ../build.log
 
     - name: Upload img
-      if: steps.build.status == success()
+      # if: steps.build.status == success()
       uses: appleboy/telegram-action@master
       with:
         token: ${{ secrets.TELTOKEN }}
@@ -67,10 +67,10 @@ jobs:
         message:  image file
         document: openwrt/bin/targets/*/*/*.img
 
-    - name: Notify failure
-      if: steps.build.status == failure()
-      uses: appleboy/telegram-action@master
-      with:
-        token: ${{ secrets.TELTOKEN }}
-        to: ${{ secrets.TELCHATID }}
-        message: Build openwrt failed.
+    # - name: Notify failure
+    #   if: steps.build.status == failure()
+    #   uses: appleboy/telegram-action@master
+    #   with:
+    #     token: ${{ secrets.TELTOKEN }}
+    #     to: ${{ secrets.TELCHATID }}
+    #     message: Build openwrt failed.
