@@ -1,0 +1,17 @@
+name: Build R7800 OpenWrt
+
+on:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    steps:
+    - name: Maximize Build Space
+      uses: fenghshia/f-openwrt-build@env-init
+      with:
+        token: ${{ secrets.TELTOKEN }}
+        chatid: ${{ secrets.TELCHATID }}
