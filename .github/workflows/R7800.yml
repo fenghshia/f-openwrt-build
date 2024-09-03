@@ -50,3 +50,17 @@ jobs:
       with:
         token: ${{ secrets.TELTOKEN }}
         chatid: ${{ secrets.TELCHATID }}
+
+    - name: Build openwrt
+      id: build
+      run: |
+        cd openwrt
+        make -j$(nproc) V=s >> ../build.log
+
+    - name: Upload img
+      uses: appleboy/telegram-action@master
+      with:
+        token: ${{ secrets.TELTOKEN }}
+        to: ${{ secrets.TELCHATID }}
+        message:  image file
+        document: openwrt/bin/targets/*/*/*.img
