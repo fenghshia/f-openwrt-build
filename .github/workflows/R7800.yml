@@ -3,7 +3,7 @@ name: Build R7800 OpenWrt
 on:
   push:
     branches:
-      - 'master'
+      - 'main'
 
 jobs:
   build:
